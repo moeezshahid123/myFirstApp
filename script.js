@@ -1,8 +1,3 @@
-for (var i = 0; i < 10000; i++) {
-  console.log(Math.round(Math.random()*28)+21);
-}
-
-
 
 var dataController = (function(){
 
