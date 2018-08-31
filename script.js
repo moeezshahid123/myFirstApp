@@ -48,6 +48,7 @@ var dataController = (function(){
         data.teacher.type.push(newPerson.type);
         data.teacher.gender.push(newPerson.gender);
       }
+      
       document.querySelector('.name').value = '';
       document.querySelector('.email').value = '';
       document.querySelector('.name').focus();
