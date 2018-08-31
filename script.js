@@ -1,3 +1,14 @@
+var x = '100askdm';
+for (var i = 0; i < x.length; i++) {
+  if (x[i] == '@') {
+    console.log('yes');
+  }
+}
+var y = 'moeezshahid74@gmail.com';
+console.log(y.slice('-4'));
+
+
+
 var dataController = (function(){
 
 // Person Class
@@ -102,15 +113,29 @@ var UIController = (function(){
 })()
 
 var backControl = (function(UICtrl,Ctrl){
-  var input,studentObj = [],teacherObj = [];
+  var input,studentObj = [],teacherObj = [],check,sign,ending;
 
 
 
   document.querySelector('.add').addEventListener('click',function(){
     input  =  UICtrl.getInput();
-    if (input.name == '' || input. email == '' || input.gender == undefined) {
+    check = input.email;
+    
+    for (var i = 0; i < check.length; i++) {
+      if (check[i] == '@') {
+        sign = true;
+      }
+    }
+
+    if (check.slice(-4) == '.com') {
+      ending = true;
+    }
+
+
+    if (input.name == '' || input. email == '' || input.gender == undefined || (!sign) || (!ending)) {
       null
-    }else {
+    }
+    else {
       if (input.type == 'student') {
         studentObj.push(Ctrl.addPerson(input.name,input.email,input.city,input.gender,input.type));
       }else if(input.type == 'teacher'){
