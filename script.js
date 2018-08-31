@@ -1,5 +1,3 @@
-
-
 var dataController = (function(){
 
 // Person Class
