@@ -1,12 +1,3 @@
-var x = '100askdm';
-for (var i = 0; i < x.length; i++) {
-  if (x[i] == '@') {
-    console.log('yes');
-  }
-}
-var y = 'moeezshahid74@gmail.com';
-console.log(y.slice('-4'));
-
 
 
 var dataController = (function(){
@@ -120,7 +111,7 @@ var backControl = (function(UICtrl,Ctrl){
   document.querySelector('.add').addEventListener('click',function(){
     input  =  UICtrl.getInput();
     check = input.email;
-    
+
     for (var i = 0; i < check.length; i++) {
       if (check[i] == '@') {
         sign = true;
