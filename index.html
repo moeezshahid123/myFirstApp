@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+  body{
+    font-size: 20px;
+  }
+
+    .header{
+      min-width: 300px;
+      margin: 10px;
+      width: 40%;
+      margin-bottom: 20px;
+    }
+    .same{
+      margin: 10px;
+    }
+    .same b,.same span{
+      letter-spacing: 1px;
+    }
+    input.name,input.email{
+      font-size: 20px;
+      width: 70vw;
+      height: 40px;
+      border-radius: 5px;
+      outline: none;
+      border: 1px solid grey;
+      margin-bottom: 10px;
+      min-width: 240px;
+    }
+    select{
+      min-width: 120px;
+      height: 30px;
+      width: 30vw;
+      border-radius: 3px;
+      outline: none;
+      margin-bottom: 10px;
+    }
+    button{
+      height: 40px;
+      width: 13vw;min-width: 110px;
+      background-color: white;
+      outline: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all .3s linear;
+      border: 1px solid black;
+    }
+    button:hover{
+      background-color: black;
+      color: white;
+    }
+    .box{
+      display: flex;
+    }
+    .student{
+      flex: 1;
+    }
+
+    .teacher{
+      flex:1;
+    }
+    .btnHeader{
+      min-width: 370px;
+    }
+    .bottom{
+      border-bottom: 2px solid black;
+      width: 30vw;
+      margin-bottom: 20px;
+    }
+    button.removeBtn{
+      margin-left: calc(30vw - 30px);
+      padding: 0px;
+      min-width: 0px;
+      height: 34px;
+      width: 30px !important;
+      border-radius: 0px;
+
+      font-weight: lighter;
+      font-size: 30px;
+      background-color: white;
+      outline: none;
+      cursor: pointer;
+      transition: all .1s linear;
+      border: 1px solid black;
+    }
+    button.removeBtn:hover{
+      background-color: red;
+      color: white;
+      border: 1px solid red;
+
+    }
+  </style>
+</head>
+<body>
+
+  <br>
+
+
+  <table>
+    <tr>
+      <td>Name:</td><td><input class="name" type="text" name="" value=""></td>
+    </tr>
+    <tr>
+      <td>Email:</td><td><input class="email" type="text"></td>
+    </tr>
+
+      <tr>
+        <td>Gender:</td>
+      </tr>
+      <tr>
+        <td>Male<input name="gender" type="radio" value="male" class="radio"></td>
+        <td>Female<input name="gender" type="radio" value="female" class="radio"></td>
+      </tr>
+
+
+
+
+    <tr>
+
+      <td>City:</td>
+      <td>
+        <select class="city" name="">
+          <option value="Karachi">Karachi</option>
+          <option value="Faisalabad">Faisalabad</option>
+          <option value="Multan">Multan</option>
+          <option value="Lahore">Lahore</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Select:</td><td>
+        <select name="" id="" class="select">
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+        </select>
+      </td>
+    </tr>
+
+
+  </table>
+
+
+
+
+
+
+  <div class="btnHeader">
+    <button class="add">Add</button>
+    <button class="showStud">Show Students</button>
+    <button class="showTeach">Show Teachers</button>
+  </div>
+
+
+  <br>
+
+
+  <div class="box">
+    <div class="student">
+      <h2>Student</h2>
+      <!--
+      <div class="header">
+        <div class="same">
+          <b>Name:</b>
+          <span>%name%</span>
+        </div>
+        <div class="same">
+          <b>Email:</b>
+          <span>%email%</span>
+        </div>
+        <div class="same">
+          <b>City:</b>
+          <span>%city%</span>
+        </div>
+      </div>
+      <button class="removeBtn">Remove</button>
+      <div class="bottom"></div>
+      -->
+    </div>
+    <div class="teacher">
+      <h2>Teacher</h2>
+      <!--
+      <div class="header">
+        <div class="same">
+          <b>Name:</b>
+          <span>%name%</span>
+        </div>
+        <div class="same">
+          <b>Email:</b>
+          <span>%email%</span>
+        </div>
+        <div class="same">
+          <b>City:</b>
+          <span>%city%</span>
+        </div>
+      </div>
+      <button class="removeBtn">Remove</button>
+      <div class="bottom"></div>
+      -->
+    </div>
+  </div>
+
+
+
+<!--
+
+<div class="header" id="header">
+  <button class="removeBtn">&times</button>
+  <div>
+    <div class="same">
+      <b>Name:</b>
+      <span>%name%</span>
+    </div>
+    <div class="same">
+      <b>Email:</b>
+      <span>%email%</span>
+    </div>
+    <div class="same">
+      <b>City:</b>
+      <span>%city%</span>
+    </div>
+    <div class="bottom"></div>
+  </div>
+</div>
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript" src="script.js">
+
+  </script>
+</body>
+</html>
