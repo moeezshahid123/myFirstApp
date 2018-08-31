@@ -22,6 +22,9 @@
     .same b,.same span{
       letter-spacing: 1px;
     }
+    .same span{
+      text-transform: capitalize;
+    }
     input.name,input.email{
       font-size: 20px;
       width: 70vw;
@@ -71,6 +74,7 @@
       border-bottom: 2px solid black;
       width: 30vw;
       margin-bottom: 20px;
+      min-width: 344px;
     }
     button.removeBtn{
       margin-left: calc(30vw - 30px);
@@ -93,6 +97,11 @@
       color: white;
       border: 1px solid red;
 
+    }
+    @media (max-width:1030px) {
+      button.removeBtn{
+        margin-left: 314px;
+      }
     }
   </style>
 </head>
@@ -208,24 +217,7 @@
 
 <!--
 
-<div class="header" id="header">
-  <button class="removeBtn">&times</button>
-  <div>
-    <div class="same">
-      <b>Name:</b>
-      <span>%name%</span>
-    </div>
-    <div class="same">
-      <b>Email:</b>
-      <span>%email%</span>
-    </div>
-    <div class="same">
-      <b>City:</b>
-      <span>%city%</span>
-    </div>
-    <div class="bottom"></div>
-  </div>
-</div>
+<div class="header" id="header"><button class="removeBtn">&times</button><div><div class="same"><b>Name:</b><span>%name%</span></div><div class="same"><b>Email:</b><span>%email%</span></div><div class="same"><b>Gender:</b><span>%gender%</span></div><div class="same"><b>City:</b><span>%city%</span></div><div class="bottom"></div></div></div>
 
 
 -->

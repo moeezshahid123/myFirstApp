@@ -84,9 +84,10 @@ var UIController = (function(){
     showPerson:function(obj){
       var text,newText;
       for (var i = 0; i < obj.length; i++) {
-        text = '<div class="header" id="header"><button class="removeBtn">&times</button><div><div class="same"><b>Name:</b><span>%name%</span></div><div class="same"><b>Email:</b><span>%email%</span></div><div class="same"><b>City:</b><span>%city%</span></div><div class="bottom"></div></div></div>';
+        text = '<div class="header" id="header"><button class="removeBtn">&times</button><div><div class="same"><b>Name:</b><span>%name%</span></div><div class="same"><b>Email:</b><span>%email%</span></div><div class="same"><b>Gender:</b><span>%gender%</span></div><div class="same"><b>City:</b><span>%city%</span></div><div class="bottom"></div></div></div>';
         newText = text.replace('%name%',obj[i].name);
         newText = newText.replace('%email%',obj[i].email);
+        newText = newText.replace('%gender%',obj[i].gender);
         newText = newText.replace('%city%',obj[i].city);
 
         if(obj[i].type == 'student'){
