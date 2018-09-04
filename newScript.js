@@ -105,7 +105,7 @@ var UIController = (function(){
 
       var text,newText;
       for (var i = 0; i < obj.length; i++) {
-        text = '<div class="header" id="%type%-%id%"><button class="removeBtn">&times</button><table><tr class="same"><td><b>Name:</b></td><td>%name%</td></tr><tr class="same"><td><b>Email:</b></td><td>%email%</td></tr><tr class="same"><td><b>Gender:</b></td><td>%gender%</td></tr><tr class="same"><td><b>City:</b></td><td>%city%</td></tr></table><div class="bottom"></div></div>';
+        text = '<div class="header" id="%type%-%id%"><button class="removeBtn">&times</button><table><tr class="same"><td><b class = "name-">Name:</b></td><td class = "name-text">%name%</td></tr><tr class="same"><td><b class = "email-">Email:</b></td><td class = "email-text">%email%</td></tr><tr class="same"><td><b>Gender:</b></td><td>%gender%</td></tr><tr class="same"><td><b class = "city-">City:</b></td><td class = "city-text">%city%</td></tr></table><div class="bottom"></div></div>';
         newText = text.replace('%name%',obj[i].name);
         newText = newText.replace('%email%',obj[i].email);
         newText = newText.replace('%gender%',obj[i].gender);
@@ -220,3 +220,21 @@ addingInput = function(){
   settingUPEventListeners();
 
 })(UIController,dataController);
+
+
+
+letSee = function(e){
+  if (e.target.className == 'name-') {
+    console.log(document.querySelector('.name-text'));
+    var name = prompt("Enter new Name.")
+    document.querySelector('.name-text').innerHtml = name
+  }else if (e.target.className == 'email-') {
+    var email = prompt("Enter new Name.")
+    document.querySelector('.email-text').innerHtml = email
+  }else if (e.target.className == 'city-') {
+    var city = prompt("Enter new Name.")
+    document.querySelector('.city-text').innerHtml = city
+  }
+}
+
+document.querySelector('.box').addEventListener('dblclick',letSee)
