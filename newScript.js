@@ -71,6 +71,7 @@ var dataController = (function(){
         data[type].email.splice(index,1);
         data[type].city.splice(index,1);
         data[type].id.splice(index,1);
+        
       }
     },
     testing: function(){
