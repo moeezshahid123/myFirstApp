@@ -1,30 +1,32 @@
+var ID;
 var dataController = (function(){
 
 // Person Class
-  var Person = function(name,email,city,gender,type){
+  var Person = function(name,email,city,gender,type,id){
     this.name = name;
     this.email = email;
     this.city = city;
     this.gender = gender;
     this.type = type;
+    this.id = id;
   }
 
 //Data Structure
 
   data = {
     student:{
-      type: [],
       name: [],
       email: [],
       city: [],
-      gender:[]
+      id:[]
+
     },
     teacher:{
-      type: [],
       name: [],
       email: [],
       city: [],
-      gender:[]
+      id:[]
+
     }
   }
 
@@ -33,19 +35,25 @@ var dataController = (function(){
 // Adding Person in Data Structure
 
     addPerson:function(name,email,city,gender,type){
-      newPerson = new Person(name,email,city,gender,type);
+
+      if (data[type].name.length > 0) {
+        console.log(data[type].id[data[type].id.length - 1]);
+        ID = data[type].id[data[type].id.length - 1] + 1
+      }else {
+        ID = 0;
+      }
+
+      newPerson = new Person(name,email,city,gender,type,ID);
       if (type == 'student') {
         data.student.name.push(newPerson.name);
         data.student.email.push(newPerson.email);
         data.student.city.push(newPerson.city);
-        data.student.type.push(newPerson.type);
-        data.student.gender.push(newPerson.gender);
+        data.student.id.push(newPerson.id);
       }else {
         data.teacher.name.push(newPerson.name);
         data.teacher.email.push(newPerson.email);
         data.teacher.city.push(newPerson.city);
-        data.teacher.type.push(newPerson.type);
-        data.teacher.gender.push(newPerson.gender);
+        data.teacher.id.push(newPerson.id);
       }
 
       document.querySelector('.name').value = '';
@@ -53,6 +61,17 @@ var dataController = (function(){
       document.querySelector('.name').focus();
       return newPerson;
 
+    },
+    deleteItem:function(type,id){
+      var ids,index;
+      ids = data[type].id;
+      index = ids.indexOf(+id);
+      if (index != -1) {
+        data[type].name.splice(index,1);
+        data[type].email.splice(index,1);
+        data[type].city.splice(index,1);
+        data[type].id.splice(index,1);
+      }
     },
     testing: function(){
       console.log(data);
@@ -78,110 +97,149 @@ var UIController = (function(){
         email : document.querySelector('.email').value,
         city : document.querySelector('.city').value,
         type : document.querySelector('.select').value,
-        gender : checkRadio
+        gender : checkRadio,
       }
     },
 // Showing Entered Data
     showPerson:function(obj){
+
       var text,newText;
       for (var i = 0; i < obj.length; i++) {
-        text = '<div class="header" id="header"><button class="removeBtn">&times</button><div><div class="same"><b>Name:</b><span>%name%</span></div><div class="same"><b>Email:</b><span>%email%</span></div><div class="same"><b>Gender:</b><span>%gender%</span></div><div class="same"><b>City:</b><span>%city%</span></div><div class="bottom"></div></div></div>';
+        text = '<div class="header" id="%type%-%id%"><button class="removeBtn">&times</button><div><div class="same"><b>Name:</b><span>%name%</span></div><div class="same"><b>Email:</b><span>%email%</span></div><div class="same"><b>Gender:</b><span>%gender%</span></div><div class="same"><b>City:</b><span>%city%</span></div><div class="bottom"></div></div></div>';
         newText = text.replace('%name%',obj[i].name);
         newText = newText.replace('%email%',obj[i].email);
         newText = newText.replace('%gender%',obj[i].gender);
         newText = newText.replace('%city%',obj[i].city);
-
+        newText = newText.replace('%id%',obj[i].id);
+        newText = newText.replace('%type%',obj[i].type);
         if(obj[i].type == 'student'){
-          document.querySelector('.student').insertAdjacentHTML('beforeend',newText);
+          document.querySelector('.stdRemove').insertAdjacentHTML('beforeend',newText);
         }else{
-          document.querySelector('.teacher').insertAdjacentHTML('beforeend',newText);
+          document.querySelector('.teaRemove').insertAdjacentHTML('beforeend',newText);
         }
 
       }
+
     }
   }
 })()
 
 var backControl = (function(UICtrl,Ctrl){
-  var input,studentObj = [],teacherObj = [],check,sign,ending;
+  var input,studentObj = [],teacherObj = [],checkStudentObj = checkTeacherObj = true;
 
 
+  var settingUPEventListeners = function(){
 
-  document.querySelector('.add').addEventListener('click',function(){
-    input  =  UICtrl.getInput();
-    check = input.email;
+      document.querySelector('.add').addEventListener('click',addingInput)
 
-    for (var i = 0; i < check.length; i++) {
-      if (check[i] == '@') {
-        sign = true;
-      }
-    }
+      document.querySelector('.showStud').addEventListener('click',showStudents)
 
-    if (check.slice(-4) == '.com') {
-      ending = true;
-    }
+      document.querySelector('.showTeach').addEventListener('click',showTeachers)
 
+      document.querySelector('.box').addEventListener('click',deleteItemFromUI)
 
-    if (input.name == '' || input. email == '' || input.gender == undefined || (!sign) || (!ending)) {
-      null
-    }
-    else {
-      if (input.type == 'student') {
-        studentObj.push(Ctrl.addPerson(input.name,input.email,input.city,input.gender,input.type));
-      }else if(input.type == 'teacher'){
-        teacherObj.push(Ctrl.addPerson(input.name,input.email,input.city,input.gender,input.type));
-      }
-    }
-
-  })
-
-
-
-
-
-
-  document.querySelector('.showStud').addEventListener('click',function(){
-    if (studentObj.length > 0) {
-      checkStudent = true;
-      UICtrl.showPerson(studentObj);
-      for (var i = 0; i <= studentObj.length + 1; i++) {
-        studentObj.shift();
-      }
-    }
-
-})
-
-
-
-
-
-
-  document.querySelector('.showTeach').addEventListener('click',function(){
-    if (teacherObj.length > 0) {
-      checkTeacher = true;
-      UICtrl.showPerson(teacherObj);
-      for (var i = 0; i <= teacherObj.length + 1; i++) {
-        teacherObj.shift();
-      }
-    }
-
-})
-
-
-
-
-
-  deleteItem = function(e){
-      if (e.target.className == 'removeBtn') {
-      e.target.parentNode.remove();
-    }
   }
 
 
 
 
 
-  document.querySelector('.box').addEventListener('click',deleteItem)
+showTeachers = function(){
+  if (teacherObj.length > 0) {
+
+    checkTeacherObj = false;
+    checkTeacher = true;
+    UICtrl.showPerson(teacherObj);
+    for (var i = 0; i <= teacherObj.length + 1; i++) {
+      teacherObj.shift();
+    }
+  }
+
+}
+
+
+
+showStudents = function(){
+  if (studentObj.length > 0) {
+
+    checkStudentObj = false;
+    checkStudent = true;
+    UICtrl.showPerson(studentObj);
+    for (var i = 0; i <= studentObj.length + 1; i++) {
+      studentObj.shift();
+    }
+  }
+
+}
+
+
+
+addingInput = function(){
+  var check,sign,ending;
+  input  =  UICtrl.getInput();
+  check = input.email;
+
+  for (var i = 0; i < check.length; i++) {
+    if (check[i] == '@') {
+      sign = true;
+    }
+  }
+
+  if (check.slice(-4) == '.com') {
+    ending = true;
+  }
+  console.log(check);
+  console.log(sign);
+  console.log(ending);
+
+  if (input.name == '' || input. email == '' || input.gender == undefined || (!sign) || (!ending)) {
+    null
+  }
+  else {
+    if (input.type == 'student') {
+      studentObj.push(Ctrl.addPerson(input.name,input.email,input.city,input.gender,input.type));
+
+    }else if(input.type == 'teacher'){
+      teacherObj.push(Ctrl.addPerson(input.name,input.email,input.city,input.gender,input.type));
+    }
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+  deleteItemFromUI = function(e){
+    var itemId,splitId,type,id;
+    itemId = e.target.parentNode.id;
+    if (itemId) {
+      splitId = itemId.split('-');
+      type = splitId[0]
+      id = splitId[1];
+      Ctrl.deleteItem(type,id);
+      e.target.parentNode.remove();
+    }
+
+
+  }
+
+
+
+  settingUPEventListeners();
+
+
+
+
+
+
 })(UIController,dataController);
 
 

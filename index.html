@@ -16,12 +16,7 @@
       width: 40%;
       margin-bottom: 20px;
     }
-    .same{
-      margin: 10px;
-    }
-    .same b,.same span{
-      letter-spacing: 1px;
-    }
+
 
     input.name,input.email{
       font-size: 20px;
@@ -40,6 +35,7 @@
       border-radius: 3px;
       outline: none;
       margin-bottom: 10px;
+      font-size: 16px;
     }
     button{
       height: 40px;
@@ -78,7 +74,7 @@
       min-width: 344px;
     }
     button.removeBtn{
-      margin-left: calc(30vw - 30px);
+      margin-left: calc(30vw);
       padding: 0px;
       min-width: 0px;
       height: 34px;
@@ -92,6 +88,8 @@
       cursor: pointer;
       transition: all .1s linear;
       border: 1px solid black;
+      margin-bottom: 20px;
+      margin-top: 20px;
     }
     button.removeBtn:hover{
       background-color: red;
@@ -172,45 +170,51 @@
   <div class="box">
     <div class="student">
       <h2>Student</h2>
-      <!--
-      <div class="header">
-        <div class="same">
-          <b>Name:</b>
-          <span>%name%</span>
+      <div class="stdRemove">
+        <!--
+        <div class="header">
+          <div class="same">
+            <b>Name:</b>
+            <span>%name%</span>
+          </div>
+          <div class="same">
+            <b>Email:</b>
+            <span>%email%</span>
+          </div>
+          <div class="same">
+            <b>City:</b>
+            <span>%city%</span>
+          </div>
         </div>
-        <div class="same">
-          <b>Email:</b>
-          <span>%email%</span>
-        </div>
-        <div class="same">
-          <b>City:</b>
-          <span>%city%</span>
-        </div>
+        <button class="removeBtn">Remove</button>
+        <div class="bottom"></div>
+        -->
       </div>
-      <button class="removeBtn">Remove</button>
-      <div class="bottom"></div>
-      -->
+
     </div>
     <div class="teacher">
       <h2>Teacher</h2>
-      <!--
-      <div class="header">
-        <div class="same">
-          <b>Name:</b>
-          <span>%name%</span>
+      <div class="teaRemove">
+        <!--
+        <div class="header">
+          <div class="same">
+            <b>Name:</b>
+            <span>%name%</span>
+          </div>
+          <div class="same">
+            <b>Email:</b>
+            <span>%email%</span>
+          </div>
+          <div class="same">
+            <b>City:</b>
+            <span>%city%</span>
+          </div>
         </div>
-        <div class="same">
-          <b>Email:</b>
-          <span>%email%</span>
-        </div>
-        <div class="same">
-          <b>City:</b>
-          <span>%city%</span>
-        </div>
+        <button class="removeBtn">Remove</button>
+        <div class="bottom"></div>
+        -->
       </div>
-      <button class="removeBtn">Remove</button>
-      <div class="bottom"></div>
-      -->
+
     </div>
   </div>
 
@@ -241,6 +245,35 @@
 </div>
 -->
 
+<!--
+<div class="header" id="%type%-%id%">
+  <button class="removeBtn">&times</button>
+  <table>
+    <tr class="same">
+      <td><b>Name:</b></td>
+      <td>%name%</td>
+    </tr>
+    <tr class="same">
+      <td><b>Email:</b></td>
+      <td>%email%</td>
+    </tr>
+    <tr class="same">
+      <td><b>Gender:</b></td>
+      <td>%gender%</td>
+    </tr>
+    <tr class="same">
+      <td><b>City:</b></td>
+      <td>%city%</td>
+    </tr>
+  </table>
+  <div class="bottom"></div>
+</div>
+
+
+
+
+
+-->
 
 
 
@@ -254,8 +287,7 @@
 
 
 
-
-  <script type="text/javascript" src="script.js">
+  <script type="text/javascript" src="newScript.js">
 
   </script>
 </body>
