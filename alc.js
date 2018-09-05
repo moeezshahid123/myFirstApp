@@ -131,15 +131,15 @@ var UIController = (function(){
       if (e.target.className == 'name-') {
         var name = prompt("Enter new Name.")
         console.log(e.target.parentNode.parentNode.childNodes[1]);
-        document.querySelector('.name-text').textContent = name
+        e.target.parentNode.parentNode.childNodes[1].textContent = name
          return [str = 'name',name];
       }else if (e.target.className == 'email-') {
         var email = prompt("Enter new Name.")
-        document.querySelector('.email-text').textContent = email
+        e.target.parentNode.parentNode.childNodes[1].textContent = email
         return [str = 'email',email];
       }else if (e.target.className == 'city-') {
         var city = prompt("Enter new Name.")
-        document.querySelector('.city-text').textContent = city
+        e.target.parentNode.parentNode.childNodes[1].textContent = city
         return [str = 'city',city];
       }
     },
@@ -169,7 +169,7 @@ var UIController = (function(){
 })()
 
 var backControl = (function(UICtrl,Ctrl){
-  var input,studentObj = [],teacherObj = [],checkStudentObj = checkTeacherObj = true;
+  var input,studentObj = [],teacherObj = [];
 
 
   var settingUPEventListeners = function(){
@@ -207,8 +207,6 @@ showTeachers = function(){
 showStudents = function(){
   if (studentObj.length > 0) {
 
-    checkStudentObj = false;
-    checkStudent = true;
     UICtrl.showPerson(studentObj);
     for (var i = 0; i <= studentObj.length + 1; i++) {
       studentObj.shift();
