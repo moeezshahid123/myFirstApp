@@ -9,15 +9,26 @@
   body{
     font-size: 20px;
   }
-
+  #major{
+    background-color: #7b7b7b;
+    padding: 20px;
+  }
+    .teacher h2,.student h2{
+      margin: auto
+    }
     .header{
+      width: 80%;
+      border: 1px solid black;
       min-width: 300px;
-      margin: 10px;
-      width: 40%;
+      margin: 20px;
+      padding: 20px;
+      background-color: grey;
       margin-bottom: 20px;
     }
 
-
+    input,select,button{
+      background-color: #f0f0f0
+    }
     input.name,input.email{
       font-size: 20px;
       width: 70vw;
@@ -40,7 +51,6 @@
     button{
       height: 40px;
       width: 13vw;min-width: 110px;
-      background-color: white;
       outline: none;
       border-radius: 5px;
       cursor: pointer;
@@ -97,6 +107,18 @@
       border: 1px solid red;
 
     }
+    .txt{
+      text-align: center;
+    }
+
+    b.name-,b.email-,b.city-{
+      cursor: pointer;
+    }
+    .head{
+      background-color: grey;
+      padding: 20px;
+      margin: 20px;
+    }
     @media (max-width:1030px) {
       button.removeBtn{
         margin-left: 314px;
@@ -106,10 +128,8 @@
 </head>
 <body>
 
-  <br>
-
-
-  <table>
+<div id="major">
+  <table class="tbl">
     <tr>
       <td>Name:</td><td><input class="name" type="text" name="" value=""></td>
     </tr>
@@ -153,15 +173,17 @@
   </table>
 
 
+    <div class="btnHeader">
+      <button class="add">Add</button>
+      <button class="showStud">Show Students</button>
+      <button class="showTeach">Show Teachers</button>
+    </div>
+</div>
 
 
 
 
-  <div class="btnHeader">
-    <button class="add">Add</button>
-    <button class="showStud">Show Students</button>
-    <button class="showTeach">Show Teachers</button>
-  </div>
+
 
 
   <br>
@@ -169,7 +191,8 @@
 
   <div class="box">
     <div class="student">
-      <h2>Student</h2>
+      <div class="txt"><h2>Student</h2></div>
+
       <div class="stdRemove">
         <!--
         <div class="header">
@@ -193,7 +216,7 @@
 
     </div>
     <div class="teacher">
-      <h2>Teacher</h2>
+      <div class="txt"><h2>Teacher</h2></div>
       <div class="teaRemove">
         <!--
         <div class="header">
@@ -274,7 +297,6 @@
 
 
 -->
-
 
 
 

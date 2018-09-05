@@ -37,7 +37,6 @@ var dataController = (function(){
     addPerson:function(name,email,city,gender,type){
 
       if (data[type].name.length > 0) {
-        console.log(data[type].id[data[type].id.length - 1]);
         ID = data[type].id[data[type].id.length - 1] + 1
       }else {
         ID = 0;

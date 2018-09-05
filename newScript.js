@@ -37,13 +37,13 @@ var dataController = (function(){
     addPerson:function(name,email,city,gender,type){
 
       if (data[type].name.length > 0) {
-        console.log(data[type].id[data[type].id.length - 1]);
         ID = data[type].id[data[type].id.length - 1] + 1
       }else {
         ID = 0;
       }
 
       newPerson = new Person(name,email,city,gender,type,ID);
+
       if (type == 'student') {
         data.student.name.push(newPerson.name);
         data.student.email.push(newPerson.email);
@@ -71,9 +71,34 @@ var dataController = (function(){
         data[type].email.splice(index,1);
         data[type].city.splice(index,1);
         data[type].id.splice(index,1);
-        
+        /* if (data[type].id[index] != undefined) {
+          var loopinArr = data[type].id.slice(index);
+         if (index == data[type].id.length - 1) {
+            data[type].id.shift();
+          }
+          for (var i = 0,j = 0; i < loopinArr.length; i++,j++) {
+            data[type].id[index + j] = loopinArr[i] - 1
+          }
+
+        }*/
+
+
+
       }
     },
+    updateStructure:function(type,id,str,val){
+      var ids,index;
+      ids = data[type].id;
+      index = ids.indexOf(+id);
+      if (str == 'name') {
+        data[type].name[index] = val;
+      }else if(str == 'email'){
+        data[type].email[index] = val;
+      }else if (str == 'city') {
+        data[type].city[index] = val;
+    }
+  },
+
     testing: function(){
       console.log(data);
     }
@@ -101,6 +126,24 @@ var UIController = (function(){
         gender : checkRadio,
       }
     },
+    updateUI : function(e,type,id){
+      var str;
+      if (e.target.className == 'name-') {
+        var name = prompt("Enter new Name.")
+        console.log(e.target.parentNode.parentNode.childNodes[1]);
+        e.target.parentNode.parentNode.childNodes[1].textContent = name
+         return [str = 'name',name];
+      }else if (e.target.className == 'email-') {
+        var email = prompt("Enter new Name.")
+        e.target.parentNode.parentNode.childNodes[1].textContent = email
+        return [str = 'email',email];
+      }else if (e.target.className == 'city-') {
+        var city = prompt("Enter new Name.")
+        e.target.parentNode.parentNode.childNodes[1].textContent = city
+        return [str = 'city',city];
+      }
+    },
+
 // Showing Entered Data
     showPerson:function(obj){
 
@@ -126,7 +169,7 @@ var UIController = (function(){
 })()
 
 var backControl = (function(UICtrl,Ctrl){
-  var input,studentObj = [],teacherObj = [],checkStudentObj = checkTeacherObj = true;
+  var input,studentObj = [],teacherObj = [];
 
 
   var settingUPEventListeners = function(){
@@ -139,6 +182,7 @@ var backControl = (function(UICtrl,Ctrl){
 
       document.querySelector('.box').addEventListener('click',deleteItemFromUI)
 
+    document.querySelector('.box').addEventListener('dblclick',letSee)
   }
 
 
@@ -163,8 +207,6 @@ showTeachers = function(){
 showStudents = function(){
   if (studentObj.length > 0) {
 
-    checkStudentObj = false;
-    checkStudent = true;
     UICtrl.showPerson(studentObj);
     for (var i = 0; i <= studentObj.length + 1; i++) {
       studentObj.shift();
@@ -186,9 +228,13 @@ addingInput = function(){
     }
   }
 
-  if (check.slice(-4) == '.com') {
-    ending = true;
+
+  for(var i = 0;i<check.length; i++){
+  	if(check.slice(i,4+i)=='.com'){
+      ending = true
+    }
   }
+
 
   if (input.name == '' || input. email == '' || input.gender == undefined || (!sign) || (!ending)) {
     null
@@ -218,24 +264,21 @@ addingInput = function(){
       e.target.parentNode.remove();
     }
 }
+
+letSee = function(e){
+  var checking;
+//  console.log(nameCheck,emailCheck,cityCheck);
+var itemId,splitId,type,id;
+itemId = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.id;
+if (itemId) {
+  splitId = itemId.split('-');
+  type = splitId[0]
+  id = splitId[1];
+
+  checking = UICtrl.updateUI(e,type,id);
+  Ctrl.updateStructure(type,id,checking[0],checking[1]);
+  }
+}
   settingUPEventListeners();
 
 })(UIController,dataController);
-
-
-
-letSee = function(e){
-  if (e.target.className == 'name-') {
-    console.log(document.querySelector('.name-text'));
-    var name = prompt("Enter new Name.")
-    document.querySelector('.name-text').innerHtml = name
-  }else if (e.target.className == 'email-') {
-    var email = prompt("Enter new Name.")
-    document.querySelector('.email-text').innerHtml = email
-  }else if (e.target.className == 'city-') {
-    var city = prompt("Enter new Name.")
-    document.querySelector('.city-text').innerHtml = city
-  }
-}
-
-document.querySelector('.box').addEventListener('dblclick',letSee)
