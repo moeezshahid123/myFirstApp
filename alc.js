@@ -2,13 +2,16 @@ var ID;
 var dataController = (function(){
 
 // Person Class
-  var Person = function(name,email,city,gender,type,id){
-    this.name = name;
-    this.email = email;
-    this.city = city;
-    this.gender = gender;
-    this.type = type;
-    this.id = id;
+  class Person  {
+    constructor(name,email,city,gender,type,id){
+      this.name = name;
+      this.email = email;
+      this.city = city;
+      this.gender = gender;
+      this.type = type;
+      this.id = id;
+    }
+
   }
 
 //Data Structure
@@ -111,12 +114,15 @@ var UIController = (function(){
 // Getting Input From User
     getInput:function(){
       var checkRadio;
-      var arr = document.querySelectorAll('.radio')
-      for (var i = 0; i < arr.length; i++) {
-        if (arr[i].checked) {
-          checkRadio = arr[i].value;
-        }
-     }
+      var arr = document.querySelectorAll('.radio');
+      arr.forEach((cur)=>{
+        cur.checked ? checkRadio = cur.value:null
+      })
+     //  for (var i = 0; i < arr.length; i++) {
+     //    if (arr[i].checked) {
+     //      checkRadio = arr[i].value;
+     //    }
+     // }
 
       return{
         name : document.querySelector('.name').value,
@@ -192,8 +198,6 @@ var backControl = (function(UICtrl,Ctrl){
 showTeachers = function(){
   if (teacherObj.length > 0) {
 
-    checkTeacherObj = false;
-    checkTeacher = true;
     UICtrl.showPerson(teacherObj);
     for (var i = 0; i <= teacherObj.length + 1; i++) {
       teacherObj.shift();
@@ -227,6 +231,9 @@ addingInput = function(){
       sign = true;
     }
   }
+
+
+
 
 
   for(var i = 0;i<check.length; i++){
